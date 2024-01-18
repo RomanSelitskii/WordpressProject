@@ -47,28 +47,12 @@ function geniuscources_setup() {
 	add_theme_support( 'post-thumbnails' );
 
 	// This theme uses wp_nav_menu() in one location.
-	register_nav_menus(
-		array(
-			'menu-1' => esc_html__( 'Primary', 'geniuscources' ),
-		)
-	);
 
 	/*
 		* Switch default core markup for search form, comment form, and comments
 		* to output valid HTML5.
 		*/
-	add_theme_support(
-		'html5',
-		array(
-			'search-form',
-			'comment-form',
-			'comment-list',
-			'gallery',
-			'caption',
-			'style',
-			'script',
-		)
-	);
+
 
 	// Set up the WordPress core custom background feature.
 	add_theme_support(
@@ -149,6 +133,24 @@ function geniuscources_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'geniuscources_scripts' );
 
+function geniuscources_theme_init() {
+    register_nav_menus(array(
+        'header_nav' => 'Header Navigation',
+        'footer_nav' => 'Footer Navigation'
+    ));
+    add_theme_support(
+        'html5',
+        array(
+            'search-form',
+            'comment-form',
+            'comment-list',
+            'gallery',
+            'caption',
+            'style',
+            'script',
+        ));
+}
+add_action('after_setup_theme', 'geniuscources_theme_init',0);
 /**
  * Implement the Custom Header feature.
  */
